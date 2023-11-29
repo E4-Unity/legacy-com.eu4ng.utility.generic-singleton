@@ -4,38 +4,72 @@ namespace E4.Utility
 {
 	public class GenericMonoSingleton<T> : MonoBehaviour where T : GenericMonoSingleton<T>
 	{
+		/* Static */
 		static T _instance;
 
 		public static T Instance
 		{
 			get
 			{
+				// 이미 할당된 상태라면 그대로 반환
 				if (_instance is not null) return _instance;
 
+				// 씬에 이미 배치되어있는 컴포넌트 찾기
 				_instance = FindObjectOfType<T>();
-				if (_instance is not null) return _instance;
+				if (_instance is not null)
+				{
+					return _instance;
+				}
 
+				// 씬에 존재하지 않는 경우 직접 생성
 				var instance = new GameObject(typeof(T).Name);
 				_instance = instance.AddComponent<T>();
-
 				return _instance;
+			}
+			private set
+			{
+				_instance = value;
+				if(_instance is not null) _instance.TryInit();
 			}
 		}
 
+		/* Field */
+		bool _isInitialized;
+
+		/* Property */
 		bool IsInstance => ReferenceEquals(_instance, GetComponent<T>());
 
+		/* MonoBehaviour */
 		protected virtual void Awake()
 		{
 			if (_instance is null)
+			{
 				_instance = GetComponent<T>();
+			}
 			else if (!IsInstance)
+			{
 				Destroy(gameObject);
+			}
 		}
 
 		protected virtual void OnDestroy()
 		{
 			if (IsInstance)
+			{
 				_instance = null;
+			}
 		}
+
+		/* Method */
+		void TryInit()
+		{
+			// 초기화는 한 번만 진행
+			if (_isInitialized) return;
+			_isInitialized = true;
+
+			Init();
+		}
+
+		protected virtual void Init(){}
 	}
 }
