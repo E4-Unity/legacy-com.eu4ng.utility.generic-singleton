@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Eu4ngUnity/unitypackage-generic-singleton/compare/v1.1.0...v1.1.1) (2023-11-29)
+
+
+### Bug Fixes
+
+* Instance Setter 미적용 문제 해결 ([6d48948](https://github.com/Eu4ngUnity/unitypackage-generic-singleton/commit/6d489486bc224738def1bc0ca591fcf582ff8ec3))
+
 # [1.1.0](https://github.com/Eu4ngUnity/unitypackage-generic-singleton/compare/v1.0.0...v1.1.0) (2023-11-29)
 
 
