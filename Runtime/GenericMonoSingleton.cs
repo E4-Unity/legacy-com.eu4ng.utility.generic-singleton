@@ -5,39 +5,39 @@ namespace E4.Utility
 	public class GenericMonoSingleton<T> : MonoBehaviour where T : GenericMonoSingleton<T>
 	{
 		/* Static */
-		static T _instance;
+		static T instance;
 
 		public static T Instance
 		{
 			get
 			{
 				// 이미 할당된 상태라면 그대로 반환
-				if (_instance is not null) return _instance;
+				if (instance is not null) return instance;
 
 				// 씬에 이미 배치되어있는 컴포넌트 찾기
-				T instance = FindObjectOfType<T>();
+				T sceneComponent = FindObjectOfType<T>();
 
 				// 정적 변수 할당 및 반환
-				Instance = instance;
-				return _instance;
+				Instance = sceneComponent;
+				return instance;
 			}
 			private set
 			{
-				_instance = value;
-				if(_instance is not null) _instance.TryInit();
+				instance = value;
+				if(instance is not null) instance.TryInit();
 			}
 		}
 
 		/* Field */
-		bool _isInitialized;
+		bool isInitialized;
 
 		/* Property */
-		bool IsInstance => ReferenceEquals(_instance, GetComponent<T>());
+		bool IsInstance => ReferenceEquals(instance, GetComponent<T>());
 
 		/* MonoBehaviour */
 		protected virtual void Awake()
 		{
-			if (_instance is null)
+			if (instance is null)
 			{
 				Instance = GetComponent<T>();
 			}
@@ -59,8 +59,8 @@ namespace E4.Utility
 		void TryInit()
 		{
 			// 초기화는 한 번만 진행
-			if (_isInitialized) return;
-			_isInitialized = true;
+			if (isInitialized) return;
+			isInitialized = true;
 
 			InitializeComponent();
 		}
