@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/E4-Unity/unitypackage-generic-singleton/compare/v1.1.2...v1.1.3) (2023-12-09)
+
+
+### Bug Fixes
+
+* 변수 명명 규칙 변경 ([b232a43](https://github.com/E4-Unity/unitypackage-generic-singleton/commit/b232a43a6ad245f0258318df8651de81c09f010d))
+
 ## [1.1.2](https://github.com/E4-Unity/unitypackage-generic-singleton/compare/v1.1.1...v1.1.2) (2023-12-09)
 
 
