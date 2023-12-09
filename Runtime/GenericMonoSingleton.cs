@@ -17,13 +17,6 @@ namespace E4.Utility
 				// 씬에 이미 배치되어있는 컴포넌트 찾기
 				T instance = FindObjectOfType<T>();
 
-				// 씬에 존재하지 않는 경우 직접 생성
-				if (instance is null)
-				{
-					var newGameObject = new GameObject(typeof(T).Name);
-					instance = newGameObject.AddComponent<T>();
-				}
-
 				// 정적 변수 할당 및 반환
 				Instance = instance;
 				return _instance;
@@ -69,9 +62,9 @@ namespace E4.Utility
 			if (_isInitialized) return;
 			_isInitialized = true;
 
-			Init();
+			InitializeComponent();
 		}
 
-		protected virtual void Init(){}
+		protected virtual void InitializeComponent(){}
 	}
 }
