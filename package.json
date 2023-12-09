@@ -1,7 +1,7 @@
 {
   "name": "com.eu4ng.utility.generic-singleton",
   "displayName": "UT Generic Singleton",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Eu4ng",
   "description": "Utilities for Generic Singleton"
 }
